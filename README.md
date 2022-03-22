@@ -15,7 +15,7 @@ Ipv6 is the internet's future, and it necessitated a more scalable survey tool t
 
 Intercept and collect all the ipv6 traffics (regardless of the protocol) therefore libpcap is preferable. probe binaries must run as a service of the operating system (OS could be Linux host).  Moreover, the probe cast a heartbeat to the C&C server for its heath checks mechanisms. This must be implemented using grpc.  Probe identifies ideal states of the host network interface and uses those time windows to send the collected ipv6 pcap.  For this. This data must be annotated with meta-information for aggregation purposes (meta information could be discussed)   
 
-### Prob CLI
+### Probe CLI
 Probe CLI is a sub-component of Probe that allows starting (passing the registering string from C&C server, eg- How you add new nodes to Kubernetes ), suspending the probe's execution in the host machine. 
 
 #### Stack
