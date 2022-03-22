@@ -11,7 +11,7 @@ Ipv6 is the internet's future, and it necessitated a more scalable survey tool t
 * * *
 ## Survey6 tool has three main components, follow describes each component and its functionalities.
 
-## probe
+## Probe
 
 Intercept and collect all the ipv6 traffics (regardless of the protocol) therefore libpcap is preferable. probe binaries must run as a service of the operating system (OS could be Linux host).  Moreover, the probe cast a heartbeat to the C&C server for its heath checks mechanisms. This must be implemented using grpc.  Probe identifies ideal states of the host network interface and uses those time windows to send the collected ipv6 pcap.  For this. This data must be annotated with meta-information for aggregation purposes (meta information could be discussed)   
 
@@ -38,3 +38,25 @@ Data Aggrateor is a series of scheduled Apache Airflow Dags
 
 #### Stack
 Python, AirFlow, Spark, PySpark, scapy
+
+* * *
+## Component Weight
+
+<table>
+  <tr>
+    <th>Component</th>
+    <th>Component Weight</th>
+  </tr>
+    <tr>
+    <th>Probe</th>
+    <th>50%</th>
+  </tr>
+    <tr>
+    <th>C&C server</th>
+    <th>30%</th>
+  </tr>
+  <tr>
+    <th>Data Aggregator</th>
+    <th>20%</th>
+  </tr>
+ <table>
