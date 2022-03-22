@@ -30,7 +30,7 @@ Python, GRPC, Redis queue, SQL Lite, Flask
 
 ## Data Aggregator.
 
-Data Aggrateor is a series of scheduled Apache Airflow Dags
+Data Aggregator is a series of scheduled Apache Airflow Dags
 
 * DAG 1 - USe dpkt or scapy to parse the pcap files along with metadata.
 * DAG2 - Spak Jobs to clean and aggregate the data and write to parquet.
