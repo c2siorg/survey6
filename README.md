@@ -19,7 +19,7 @@ Intercept and collect all the ipv6 traffics (regardless of the protocol) therefo
 Probe CLI is a sub-component of Probe that allows starting (passing the registering string from C&C server, eg- How you add new nodes to Kubernetes ), suspending the probe's execution in the host machine. 
 
 #### Stack
-C/C++, GRPC,  libpcap, Linux Kernal Drivers Development,  
+C/C++, GRPC,  libpcap, Linux Kernel Drivers Development,  
 
 ## C&C server
 
