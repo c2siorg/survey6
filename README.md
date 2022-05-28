@@ -1,6 +1,6 @@
 # survey6
 
-[![Join the chat at https://gitter.im/survey6/community](https://badges.gitter.im/survey6/community.svg)](https://gitter.im/survey6/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/web-telescope/survey6](https://badges.gitter.im/survey6/community.svg)](https://gitter.im/survey6/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ipv6 survey Tool (survey6)
 #### Brief explanation:  
