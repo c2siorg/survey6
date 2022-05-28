@@ -1,4 +1,7 @@
 # survey6
+
+[![Join the chat at https://gitter.im/survey6/community](https://badges.gitter.im/survey6/community.svg)](https://gitter.im/survey6/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ipv6 survey Tool (survey6)
 #### Brief explanation:  
 Ipv6 is the internet's future, and it necessitated a more scalable survey tool to comprehend how routing and DNS function. The purpose of this project is to create an IPv6 listener that will passively collect IPv6 traffic data as a passive data collection tool for cyber security research.
