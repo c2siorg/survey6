@@ -4,8 +4,16 @@ import datetime
 
 
 def dataCapture(noOfPackets = 2,filename = "f"):
-    ''' f '''
-
+    ''' 
+    - Captures {noOfPackets} IPv6 data packets from all interfaces of the probe
+    - Stores the captured packets in a single .pcap file of name {filename}
+    - Annotates the .pcap file with hostname & date of capture
+    - Input: 
+        * noOfPackets : number of packets to be captured
+        * filename : the name by which the .pcap file is stored
+    - Output:
+        * none 
+    '''
 
     path = "../capture"
     if not os.path.exists(path):   
