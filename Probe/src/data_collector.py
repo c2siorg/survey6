@@ -3,6 +3,7 @@ import os
 import sys
 import datetime
 import logging
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,43 +20,75 @@ def dataCapture(noOfPackets = 2,filename = "f"):
         * none 
     '''
 
-    path_capture = os.getenv('CAPTURED_PACKET_PATH')
-    if not os.path.exists(path_capture):  
+    # log_path = os.getenv('LOG_PATH')
+    log_path = "../f"
+
+    if not os.path.exists(log_path):  
         try: 
-            os.mkdir(path_capture)
+            os.makedirs(log_path)
         except OSError as e:
-            logging.exception("")
+            logging.error(e)
+            sys.exit(0)
+        
+    logfile_path = "{}/{}.log".format(log_path,filename)
+
+    try:
+        logging.basicConfig(filename=logfile_path,filemode = "w",format='%(asctime)s %(levelname)s: %(message)s',level=logging.INFO)
+        logging.basicConfig(filename=logfile_path,filemode = "w",format='%(asctime)s %(levelname)s: %(message)s %(lineno)d',level=logging.ERROR)
+    except PermissionError as e:
+        logging.error(e)
+        sys.exit(0)
+
+    logger = logging.getLogger()
+
+
+    capture_path = os.getenv('CAPTURED_PACKET_PATH')
+    if not os.path.exists(capture_path):  
+        try: 
+            os.mkdir(capture_path)
+        except OSError as e:
+            logger.error(e)
             sys.exit(0)
 
-    path_packet = "{}/{}.pcap".format(path_capture,filename)
+    packet_path = "{}/{}.pcap".format(capture_path,filename)
 
     try:
         capture = scapy.sniff(filter="ip6", count = noOfPackets)
-        print("captured {} packets".format(noOfPackets))
     except PermissionError as e:
-        logging.exception("")
+        logger.error(e)
         sys.exit(0)
     except Exception as e:
-        logging.exception("")
-        sys.exit(0)
-    
-    try:
-        scapy.wrpcap("path_packet",capture)
-    except OSError as e:
-        logging.exception("")
+        logger.error(e)
         sys.exit(0)
     else:
-        print("Saved the captured packets as {}.pcap".format(filename))
+        logger.info("captured {} packets".format(noOfPackets))
 
+    
+    try:
+        scapy.wrpcap(packet_path,capture)
+    except OSError as e:
+        logger.error(e)
+        sys.exit(0)
+    else:
+        logger.info("Saved the captured packets as {}.pcap".format(filename))
+    
 
     myhost = os.uname().nodename
-    os.setxattr(path_packet,'user.hostname',myhost.encode('ascii')) #change
-    print("captured by: {}".format(myhost))
+    logger.info("captured by: {}".format(myhost))
 
     now = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")    #change
-    os.setxattr(path_packet,'user.date',now.encode('ascii'))
-    print("captured on {}".format(now))
+    logger.info("captured on {}".format(now))
 
+    metadata = {'hostname': myhost,'date':now, 'filename':"{}.pcap".format(filename)}
+    metadata_json = json.dumps(metadata, indent=4)
+    
+    metadata_path = "{}/{}.json".format(capture_path,filename)
+    try:
+        with open(metadata_path,"w") as f:
+            f.write(metadata_json)
+    except FileNotFoundError as e:
+        logger.error(e)
+        sys.exit(0)
 
 
 
