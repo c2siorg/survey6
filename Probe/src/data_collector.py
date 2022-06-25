@@ -20,8 +20,7 @@ def dataCapture(noOfPackets = 2,filename = "f"):
         * none 
     '''
 
-    # log_path = os.getenv('LOG_PATH')
-    log_path = "../f"
+    log_path = os.getenv('LOG_PATH')
 
     if not os.path.exists(log_path):  
         try: 
