@@ -1,6 +1,8 @@
 import scapy.all as scapy
 import os
+import sys
 import datetime
+import logging
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -20,26 +22,31 @@ def dataCapture(noOfPackets = 2,filename = "f"):
     path_capture = os.getenv('CAPTURED_PACKET_PATH')
     if not os.path.exists(path_capture):  
         try: 
-            os.makedirs(path_capture)
-        except(e):
-            print(e)
-            return e
+            os.mkdir(path_capture)
+        except OSError as e:
+            logging.exception("")
+            sys.exit(0)
 
     path_packet = "{}/{}.pcap".format(path_capture,filename)
 
     try:
         capture = scapy.sniff(filter="ip6", count = noOfPackets)
         print("captured {} packets".format(noOfPackets))
-    except(e):
-        print(e)
-        return e
+    except PermissionError as e:
+        logging.exception("")
+        sys.exit(0)
+    except Exception as e:
+        logging.exception("")
+        sys.exit(0)
     
     try:
-        scapy.wrpcap(path_packet,capture)
+        scapy.wrpcap("path_packet",capture)
+    except OSError as e:
+        logging.exception("")
+        sys.exit(0)
+    else:
         print("Saved the captured packets as {}.pcap".format(filename))
-    except(e):
-        print(e)
-        return e
+
 
     myhost = os.uname().nodename
     os.setxattr(path_packet,'user.hostname',myhost.encode('ascii')) #change
