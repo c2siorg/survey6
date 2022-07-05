@@ -1,0 +1,9 @@
+Unit]
+Description=Survey6 Server Start
+After=network.target
+[Service]
+Type=simple
+User=root
+ExecStart=/bin/bash -c 'cd /home/dhruvi/Desktop/gsoc2022/survey6/C\&C\ Server && source venv/bin/activate && python app.py'
+[Install]
+WantedBy=multi-user.target
