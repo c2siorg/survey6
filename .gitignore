@@ -1,6 +1,10 @@
 # Temp Folders
 /Probe/capture
 
+# Compiled Protobuf
+*_pb2_grpc.py
+*_pb2.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

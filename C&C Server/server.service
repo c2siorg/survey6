@@ -1,4 +1,4 @@
-Unit]
+[Unit]
 Description=Survey6 Server Start
 After=network.target
 [Service]
