@@ -1,6 +1,9 @@
+from datetime import datetime
+
 import service_methods.grpc_bin.survey6_pb2_grpc as pb2_grpc        
 import service_methods.grpc_bin.survey6_pb2 as pb2
 from data.ClientDao import ClientDao
+
 
 class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
     
@@ -10,10 +13,9 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         
     def ClientConnect(self, request, context):
         
-        print(request)
         client_db = ClientDao()  
-        client_db.addClient({'hostname': request.host_name,'registrationEpochTime': "5",'lastActiveTime': "5",'currentStatus': 1})
-        
+        time = request.request_epoch_time.seconds
+        client_db.addClient({'hostname': request.host_name,'registrationEpochTime': time,'lastActiveTime': time,'currentStatus': 1})
         return pb2.ClientConnectResponse(connection_status = 1)
 
     def ClientDisconnect(self, request, context):
