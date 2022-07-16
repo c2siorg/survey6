@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package survey6;
+
+service ClientConnection{
+
+    rpc ClientConnect(ClientConnectRequest) returns (ClientConnectResponse);
+    rpc ClientDisconnect(ClientDisconnectRequest) returns (ClientDisconnectResponse);
+    
+    
+    rpc Heartbeat(HeartbeatSender) returns (HeartbeatAck); 
+    
+    rpc GrantReceiveData(GrantReceiveDataRequest) returns (GrantReceiveDataResponse);
+
+}
+
+service Utils{
+
+    rpc ViewHealthOfClient(ViewHealthRequest) returns (ViewHealthResponse);
+    rpc ViewDataRecieved(ViewDataRecievedRequest) returns (ViewDataRecievedResponse);
+
+}
+
+enum Response{
+    FAILURE = 0;
+    SUCCESS = 1;
+}
+
+/*
+-------------------------------------------------------
+    Client Connect Messages
+-------------------------------------------------------
+*/
+message ClientConnectRequest{
+
+    string host_name = 1;
+    google.protobuf.Timestamp request_epoch_time = 2;
+
+}
+message ClientConnectResponse{
+    
+    Response connection_status = 1;
+}
+
+/*
+-------------------------------------------------------
+    Client Disconnect Messages
+-------------------------------------------------------
+*/
+message ClientDisconnectRequest{
+
+    string host_name = 1;
+    google.protobuf.Timestamp request_epoch_time = 2;
+
+}
+message ClientDisconnectResponse{
+
+    Response disconnection_status = 1;
+
+}
+
+/*
+-------------------------------------------------------
+    SendHeartbeat Messages
+-------------------------------------------------------
+*/
+message HeartbeatSender{
+
+    string host_name = 1;
+    google.protobuf.Timestamp request_epoch_time = 2;
+
+}
+message HeartbeatAck{
+
+    Response ack = 1;
+
+}
+
+/*
+-------------------------------------------------------
+    GrantReceiveData Messages
+-------------------------------------------------------
+*/
+message GrantReceiveDataRequest{
+
+}
+message GrantReceiveDataResponse{
+    
+}
+
+/*
+-------------------------------------------------------
+    Utils Messages
+-------------------------------------------------------
+*/
+/*
+-------------------------------------------------------
+    ViewHealthRequest Messages
+-------------------------------------------------------
+*/
+
+message ViewHealthRequest{
+    string host_name = 1;
+
+}
+message ViewHealthResponse{
+    // json formatting
+    
+}
+
+/*
+-------------------------------------------------------
+    ViewDataRecieved Messages
+-------------------------------------------------------
+*/
+message ViewDataRecievedRequest{
+
+}
+
+message ViewDataRecievedResponse{
+
+}

@@ -1,6 +1,16 @@
 # Temp Folders
 /Probe/capture
 
+# Compiled Protobuf
+# *_pb2_grpc.py
+# *_pb2.py
+
+# Temp test
+clientTest.py
+
+# Database
+*.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
