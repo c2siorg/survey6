@@ -12,9 +12,11 @@ class ClientDao(object):
       
       
    def removeClient(self,host_name):
+      
       removed_client =  self.__db.query("SELECT * FROM CurrentClients WHERE hostname = :hostname;",{'hostname' : host_name}).fetchall()
       self.__db.query("DELETE FROM CurrentClients WHERE hostname = :hostname;",{'hostname' : host_name})
       return removed_client
+      
       
    def showClients(self):
       return self.__db.query("SELECT * FROM CurrentClients",{}).fetchall()
