@@ -5,7 +5,7 @@ class ClientDao(object):
     
    def __init__(self):
       self.__db = DbHelper('clients.db')
-      self.__db.query("CREATE TABLE IF NOT EXISTS CurrentClients (id INTEGER PRIMARY KEY AUTOINCREMENT, hostname TEXT , registrationEpochTime TIMESTAMP, lastActiveTime TIMESTAMP, currentStatus BOOLEAN, lastDataReceivedTime TIMESTAMP)",{})
+      self.__db.query("CREATE TABLE IF NOT EXISTS CurrentClients (id INTEGER AUTO_INCREMENT, hostname TEXT PRIMARY KEY, registrationEpochTime TIMESTAMP, lastActiveTime TIMESTAMP, currentStatus BOOLEAN, lastDataReceivedTime TIMESTAMP)",{})
     
    def addClient(self,client):
       self.__db.query("INSERT INTO CurrentClients (hostname,registrationEpochTime, lastActiveTime, currentStatus) VALUES(:hostname,:registrationEpochTime, :lastActiveTime, :currentStatus)",client)

@@ -38,8 +38,12 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         except sqlite3.OperationalError as e:
             self.LOGGER.error(e)
             return pb2.ClientDisconnectResponse(disconnection_status = 0)
+        
         else:
-            self.LOGGER.info("CLient {} deleted from clients db".format(request.host_name))
+            if (len(removed_client_details) == 0):
+                self.LOGGER.info("No CLient {} found".format(request.host_name))
+                return pb2.ClientDisconnectResponse(disconnection_status = 0)
+            else: self.LOGGER.info("CLient {} deleted from clients db".format(request.host_name))
             
         try:
             client_archive = DataUtils.clientToArchive(removed_client_details)

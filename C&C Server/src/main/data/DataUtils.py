@@ -1,8 +1,5 @@
-from multiprocessing.connection import Client
-
-
 def clientToArchive(client):
-    # error handling -> if empty or if more than one values 
+    # error handling -> if empty 
     if(len(client) == 0):
         raise Exception("No user found")
     
