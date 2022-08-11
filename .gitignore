@@ -20,9 +20,13 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+*.tar.gz
+cnc_server.egg.info
+
 .Python
 build/
 develop-eggs/
+deb_dist/
 dist/
 downloads/
 eggs/
