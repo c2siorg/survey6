@@ -8,7 +8,7 @@ setup(
         'grpcio==1.47.0',
         'grpcio-tools==1.47.0',
         'protobuf==3.20.1',
-        # 'six==1.16.0',
+        'six',
         'python-dotenv==0.20.0',
     ],
     description='Server of Survey6 tool',

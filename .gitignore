@@ -1,3 +1,10 @@
+C&C Server/debian/.debhelper
+C&C Server/debian/cnc-server
+CC&C Server/debian/source
+*.deb
+*.buildinfo
+*.changes
+
 # Temp Folders
 /Probe/capture
 
@@ -20,8 +27,6 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-*.tar.gz
-cnc_server.egg.info
 
 .Python
 build/
@@ -41,6 +46,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.tar.gz
 MANIFEST
 
 # PyInstaller

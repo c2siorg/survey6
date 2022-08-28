@@ -1,0 +1,5 @@
+./src/main /usr/share/cnc-server
+./.env /usr/share/cnc-server
+./server.service /usr/share/cnc-server
+./requirements.txt /usr/share/cnc-server
+./cnc-server /usr/bin

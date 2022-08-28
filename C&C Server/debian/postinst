@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# su - survey6 
+
+sudo -u survey6 cp -r /usr/share/cnc-server/ /home/survey6/
+
+cd /home/survey6/cnc-server
+sudo -u survey6 pip install -r requirements.txt
+
+sudo cp server.service /etc/systemd/system/survey6_server.service
+
+systemctl daemon-reload
