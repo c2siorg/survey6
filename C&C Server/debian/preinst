@@ -3,3 +3,5 @@ password=survey6
 
 adduser --gecos "" --disabled-password $username
 echo "$username:$password" | chpasswd 
+
+mkdir -p /home/survey6/cnc-server

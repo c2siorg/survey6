@@ -1,5 +1,5 @@
-./src/main /usr/share/cnc-server
-./.env /usr/share/cnc-server
-./server.service /usr/share/cnc-server
-./requirements.txt /usr/share/cnc-server
+./src/main /home/survey6/cnc-server
+./.env /home/survey6/cnc-server
+./server.service /home/survey6/cnc-server
+./requirements.txt //home/survey6/cnc-server
 ./cnc-server /usr/bin
