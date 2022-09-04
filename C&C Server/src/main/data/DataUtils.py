@@ -4,6 +4,6 @@ def clientToArchive(client):
         raise Exception("No user found")
     
     client = client[0]
-    archive = {'hostname': client[1],'lastActiveTime': client[3]}
+    archive = {'uid':client[0],'hostname': client[1],'lastActiveTime': client[3]}
     return archive
     

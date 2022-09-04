@@ -22,11 +22,11 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         
         client_db = ClientDao()  
         time = request.request_epoch_time.seconds
-        client_db.addClient({'hostname': request.host_name,'registrationEpochTime': time,'lastActiveTime': time,'currentStatus': 1})
+        uid,_ = client_db.addClient({'hostname': request.host_name,'registrationEpochTime': time,'lastActiveTime': time,'currentStatus': 1})
 
         self.LOGGER.info("CLient connected with host name : {}".format(request.host_name))
         
-        return pb2.ClientConnectResponse(connection_status = 1)
+        return pb2.ClientConnectResponse(connection_status = 1,uid = uid)
 
     def ClientDisconnect(self, request, context):        
         
@@ -34,7 +34,7 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         archive_db = ArchiveDao()
         
         try: 
-            removed_client_details = client_db.removeClient(request.host_name)
+            removed_client_details = client_db.removeClient(request.uid)
         except sqlite3.OperationalError as e:
             self.LOGGER.error(e)
             return pb2.ClientDisconnectResponse(disconnection_status = 0)
