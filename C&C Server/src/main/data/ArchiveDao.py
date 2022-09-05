@@ -1,4 +1,4 @@
-from data.DbHelper import DbHelper
+from .DbHelper import DbHelper
 
 class ArchiveDao(object):
    __db = None;

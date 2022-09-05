@@ -2,13 +2,12 @@ from datetime import datetime
 from sqlite3 import OperationalError
 import sqlite3
 
-import service_methods.grpc_bin.survey6_pb2_grpc as pb2_grpc        
-import service_methods.grpc_bin.survey6_pb2 as pb2
+from .grpc_bin import survey6_pb2_grpc as pb2_grpc        
+from .grpc_bin import survey6_pb2 as pb2
 
-from data.ClientDao import ClientDao
-from data.ArchiveDao import ArchiveDao
-from data import DataUtils
-import Utils
+from ..data.ClientDao import ClientDao
+from ..data import DataUtils
+from .. import Utils
 
 
 
@@ -31,7 +30,6 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
     def ClientDisconnect(self, request, context):        
         
         client_db = ClientDao()  
-        archive_db = ArchiveDao()
         
         try: 
             removed_client_details = client_db.removeClient(request.uid)
@@ -52,7 +50,7 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
             return pb2.ClientDisconnectResponse(disconnection_status = 0)
             
         try:
-            archive_db.addArchive(client_archive)            
+            client_db.addArchive(client_archive)            
         except sqlite3.OperationalError as e:
             self.LOGGER.error(e)
             return pb2.ClientDisconnectResponse(disconnection_status = 0)
