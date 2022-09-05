@@ -2,7 +2,7 @@ function cncserver
 { 
     if [ -z "$1" ];
     then
-        echo "Enter a command: start / stop"
+        echo "Enter a command: start / stop / status"
     elif [ "$1" = "start" ]; 
     then 
         systemctl start survey6_server
