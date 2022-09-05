@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import service_methods.grpc_bin.survey6_pb2 as survey6__pb2
+from . import survey6_pb2 as survey6__pb2
 
 
 class ClientConnectionStub(object):
