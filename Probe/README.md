@@ -56,3 +56,6 @@ Example use case is in [src/test](./src/test/test_data_collector.py)]
 ![](./screenshots/terminal_out.png)
 ![](./screenshots/log_out.png)
 ![](./screenshots/captured_files.png)
+
+## Video
+* [Probe](https://drive.google.com/file/d/1fSBYXjHva7zfjUsIW2_bN7vebJO_SB8Q/view?usp=sharing)

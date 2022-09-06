@@ -8,6 +8,7 @@ load_dotenv()
 
 def getLogger(filename = 'log1'):
     log_path = os.getenv('LOG_PATH')
+    # log_path = "/home/survey6/logs"
 
     if not os.path.exists(log_path):  
         try: 

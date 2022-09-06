@@ -11,7 +11,7 @@ if __name__ == '__main__':
     filename = 'capture2'
     data_collector.dataCapture(5,filename)
 
-    packet_path = f"../capture/{filename}.pcap"
+    packet_path = f"../../capture/{filename}.pcap"
 
 
     print("TEST DATA:")

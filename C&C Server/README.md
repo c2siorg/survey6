@@ -105,5 +105,6 @@ sudo apt-get install ../cnc-server_0.1.0-1_all.deb
 ### Testing
 ![](./screenshots/testcases.png)
 
-
 ## Video Demo
+* [Running from package](https://drive.google.com/file/d/1kmxOZZXKXUTpBfkJcs1gcroiuIDU3tys/view?usp=sharing)
+* [Testing](https://drive.google.com/file/d/1mlhD5XWk1s7ELlx36w6s4_0fUfeKQu8D/view?usp=sharing)
