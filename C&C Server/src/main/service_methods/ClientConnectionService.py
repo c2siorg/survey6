@@ -1,20 +1,21 @@
 from datetime import datetime
+import imp
 from sqlite3 import OperationalError
 import sqlite3
 
 from .grpc_bin import survey6_pb2_grpc as pb2_grpc        
 from .grpc_bin import survey6_pb2 as pb2
 
-from ..data.ClientDao import ClientDao
-from ..data import DataUtils
-from .. import Utils
+from data.ClientDao import ClientDao
+from data import DataUtils
+import Utils
 
 
 
 class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         
     def __init__(self):
-        self.LOGGER = Utils.getLogger()
+        self.LOGGER = Utils.getLogger()     
         
         
     def ClientConnect(self, request, context):

@@ -1,38 +1,105 @@
 # C&C Server
 
-## Auto Setup
+## Description
+C&C server should have the Probe registering mechanism. And it listens to registered Prob's heartbeats.  WebUI shows the active states of Probes in a list view.
+
+## Implemeted Functionalities
+* Registering mechanism for Probe
+* Disconnecting mechanism for Probe
+* Storing Probe information in database
+* Logging mechanism
+* Packaging
+* Test suite
+
+## Technology stack
+* gRPC
+* protobuf
+* SQLite
+* dpkg suite
+
+## Folder Structure
+.
+├── debian
+├── src
+│   ├── main
+│   │   ├── data
+│   │   │   ├── ClientDao.py
+│   │   │   ├── DataUtils.py
+│   │   │   └── DbHelper.py
+│   │   ├── service_methods
+│   │   │   ├── grpc_bin
+│   │   │   │   ├── survey6_pb2_grpc.py
+│   │   │   │   └── survey6_pb2.py
+│   │   │   ├── ClientConnectionService.py
+│   │   │   └── UtilsService.py
+│   │   ├── App.py
+│   │   └── Utils.py
+│   └── test
+│       └── test_server.py
+├── cnc-server
+├── requirements.txt
+└── server.service
+
+## Server Setup
+1. Clone the repository
 ```
-source setup.bash 
+git clone https://github.com/web-telescope/survey6.git
 ```
-### Server commands
-1. To start the server
+2. Move to C&C Server
 ```
-cncserver start
+cd C\&C\ Server/
 ```
-2. To check server status
+3. Create and activate virtual environment
 ```
-cncserver status
+python3 -m pip install --user virtualenv
+python3 -m venv env
+source env/bin/activate
 ```
-3. To stop the server
+4. Install Requirements
 ```
-cncserver stop
+python3 -m pip install -r requirements.txt
 ```
 
-## In case of manual set up
-1. Copy `server.service` in path ` /etc/systemd/system/ `
-2. Reload the deamon 
+## Activate Server
+1. Move to src/main
 ```
-systemctl daemon-reload
+cd src/main
 ```
-3. Starting the server
+2. Run the server
 ```
-systemctl start server
+python App.py
 ```
-4. Check Status
+
+## Server Testing
+1. Move to `src/test` from `C&C Server`
 ```
-systemctl status server
+cd src/test
 ```
-5. Stop Server
+2. Run tests
 ```
-systemctl stop server
+python test_server.py
 ```
+## Server Packaging
+
+### Packaging
+1. Come to `C&C Server` dir
+2. Run dpkg
+```
+dpkg-buildpackage -b -rfakeroot -us -uc
+```
+
+### Package Installation
+1. Considering you are in `C&C Server` dir,
+``` 
+sudo apt-get install ../cnc-server_0.1.0-1_all.deb
+```
+
+## Screenshots
+![](./screenshots/log1.png)
+![](./screenshots/test1.png)
+
+### Testing
+![](./screenshots/testcases.png)
+
+
+## Video Demo
