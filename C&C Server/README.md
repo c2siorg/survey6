@@ -97,8 +97,10 @@ sudo apt-get install ../cnc-server_0.1.0-1_all.deb
 ```
 
 ## Screenshots
-![](./screenshots/log1.png)
-![](./screenshots/test1.png)
+![](./screenshots/clientTest.png)
+
+## System service
+![](./screenshots/system_service.png)
 
 ### Testing
 ![](./screenshots/testcases.png)
