@@ -4,11 +4,13 @@
 All database operations reside in this directory
 
 ## Structure
+```
 .
 ├── ClientDao.py
 ├── DataUtils.py
 ├── DbHelper.py
 └── __init__.py
+```
 
 ## Database schema
 

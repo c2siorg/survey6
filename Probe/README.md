@@ -13,6 +13,7 @@ Intercept and collect all the ipv6 traffics (regardless of the protocol) therefo
 * protobuf
 
 ## Folder Structure
+```
 .
 ├── capture
 ├── logs
@@ -22,6 +23,7 @@ Intercept and collect all the ipv6 traffics (regardless of the protocol) therefo
 │   └── test
 │       └── test_data_collector.py
 └── requirements.txt
+```
 
 `capture` containes captured `.pcap` files as well as their metadata `.json` files
 

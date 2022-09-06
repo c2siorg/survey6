@@ -18,6 +18,7 @@ C&C server should have the Probe registering mechanism. And it listens to regist
 * dpkg suite
 
 ## Folder Structure
+```
 .
 ├── debian
 ├── src
@@ -39,6 +40,7 @@ C&C server should have the Probe registering mechanism. And it listens to regist
 ├── cnc-server
 ├── requirements.txt
 └── server.service
+```
 
 ## Server Setup
 1. Clone the repository
