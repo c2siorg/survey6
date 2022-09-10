@@ -7,6 +7,7 @@ class DbHelper:
 
     def __init__(self, db_name):
         self.__connection = sqlite3.connect(db_name)
+        # self.__connection = sqlite3.connect("/home/survey6/clients.db")
         self.__cursor = self.__connection.cursor()
         
     def __del__(self):

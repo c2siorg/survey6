@@ -1,16 +1,15 @@
 from datetime import datetime
 from unittest.mock import MagicMock
-from google.protobuf.timestamp_pb2 import Timestamp
 from mock import patch
 import unittest
   
 import sys
-sys.path.append("..")
+sys.path.append("../main")
 
-from main.data.ClientDao import ClientDao
-from main.data.DbHelper import DbHelper
-from main.service_methods.ClientConnectionService import ClientConnectionService
-from main.service_methods.grpc_bin import survey6_pb2 as pb2
+from data.ClientDao import ClientDao
+from data.DbHelper import DbHelper
+from service_methods.ClientConnectionService import ClientConnectionService
+from service_methods.grpc_bin import survey6_pb2 as pb2
 
 def __init__(self):
     self.db = DbHelper('test.db')
