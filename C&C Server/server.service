@@ -4,6 +4,6 @@ After=network.target
 [Service]
 Type=simple
 User=root
-ExecStart=/bin/bash -c 'cd /home/dhruvi/Desktop/gsoc2022/survey6/C\&C\ Server && source venv/bin/activate && python app.py'
+ExecStart=/bin/bash -c 'python3 /home/survey6/cnc-server/main/App.py'
 [Install]
 WantedBy=multi-user.target

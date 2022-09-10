@@ -1,5 +1,5 @@
-import grpc_bin.survey6_pb2_grpc as pb2_grpc
-import grpc_bin.survey6_pb2 as pb2
+from .grpc_bin import survey6_pb2_grpc as pb2_grpc
+from .grpc_bin import survey6_pb2 as pb2
 
 class UtilsService(pb2_grpc.UtilsServicer):
 
