@@ -29,11 +29,11 @@ def dataCapture(noOfPackets = 2,filename = "f"):
             logging.error(e)
             sys.exit(0)
         
-    logfile_path = "{}/{}.log".format(log_path,filename)
+    logfile_path = "{}/{}.log".format(log_path,"log1")
 
     try:
-        logging.basicConfig(filename=logfile_path,filemode = "w",format='%(asctime)s %(levelname)s: %(message)s',level=logging.INFO)
-        logging.basicConfig(filename=logfile_path,filemode = "w",format='%(asctime)s %(levelname)s: %(message)s %(lineno)d',level=logging.ERROR)
+        logging.basicConfig(filename=logfile_path,filemode = "a",format='%(asctime)s %(levelname)s: %(message)s',level=logging.INFO)
+        logging.basicConfig(filename=logfile_path,filemode = "a",format='%(asctime)s %(levelname)s: %(message)s %(lineno)d',level=logging.ERROR)
     except PermissionError as e:
         logging.error(e)
         sys.exit(0)

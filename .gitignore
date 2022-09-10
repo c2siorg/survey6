@@ -1,3 +1,10 @@
+C&C Server/debian/.debhelper
+C&C Server/debian/cnc-server
+CC&C Server/debian/source
+*.deb
+*.buildinfo
+*.changes
+
 # Temp Folders
 /Probe/capture
 
@@ -20,9 +27,11 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+
 .Python
 build/
 develop-eggs/
+deb_dist/
 dist/
 downloads/
 eggs/
@@ -37,6 +46,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.tar.gz
 MANIFEST
 
 # PyInstaller
@@ -133,7 +143,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+# .env
 .venv
 env/
 venv/

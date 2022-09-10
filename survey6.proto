@@ -42,6 +42,7 @@ message ClientConnectRequest{
 message ClientConnectResponse{
     
     Response connection_status = 1;
+    string uid = 2;
 }
 
 /*
@@ -53,7 +54,8 @@ message ClientDisconnectRequest{
 
     string host_name = 1;
     google.protobuf.Timestamp request_epoch_time = 2;
-
+    string uid = 3;
+    
 }
 message ClientDisconnectResponse{
 
