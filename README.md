@@ -60,6 +60,22 @@ Data Aggregator is a series of scheduled Apache Airflow Dags
 Python, AirFlow, Spark, PySpark, scapy
 
 * * *
+
+# Contributing
+We are glad that you are willing to contribute. Tasks to be taken up next are:
+1. Fix issue that fails one testcase - *C&C Server*
+2. Heartbeat and health status check - *both modules : Probe and C&C Server*
+3. Sending packets from probe and recieving packets at server - *both modules : Probe and C&C Server*
+4. Create a debian package for the probe once it has significant development. [For this one could refer packaging procedure of C&C Server: [here](https://medium.com/scorelab/packaging-overview-74aaeead3655) and [here](https://medium.com/scorelab/debian-packaging-of-a-python-project-ca4dfac9ac98)] - *Probe*
+5. Display status of connected and registered probes - *C&C server*
+
+Stretch goal:
+1. Hosting the debian packages
+
+
+Please do follow [contributing guidelines](./CONTRIBUTING.md) to help the maintainers. Thank you for your wonderful cooperation! 
+
+* * *
 ## Component Weight
 
 <table>
