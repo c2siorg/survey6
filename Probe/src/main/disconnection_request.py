@@ -42,7 +42,8 @@ with open(os.path.expanduser(UID), 'r') as f:
     uid = f.read()
 
 # Connecting to the GRPC server
-with grpc.insecure_channel('[::]:32001') as channel: 
+server_ip = os.getenv('GRPC_SERVER')
+with grpc.insecure_channel(server_ip) as channel: 
 
     stub = pb2_grpc.ClientConnectionStub(channel)
 
