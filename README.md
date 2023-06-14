@@ -74,25 +74,3 @@ Stretch goal:
 
 
 Please do follow [contributing guidelines](./CONTRIBUTING.md) to help the maintainers. Thank you for your wonderful cooperation! 
-
-* * *
-## Component Weight
-
-<table>
-  <tr>
-    <th>Component</th>
-    <th>Component Weight</th>
-  </tr>
-    <tr>
-    <th>Probe</th>
-    <th>50%</th>
-  </tr>
-    <tr>
-    <th>C&C server</th>
-    <th>30%</th>
-  </tr>
-  <tr>
-    <th>Data Aggregator</th>
-    <th>20%</th>
-  </tr>
- <table>
