@@ -6,6 +6,8 @@ import logging
 import json
 from dotenv import load_dotenv
 
+
+
 load_dotenv()
 
 def dataCapture(noOfPackets = 2,filename = "f"):
@@ -27,6 +29,7 @@ def dataCapture(noOfPackets = 2,filename = "f"):
             os.makedirs(log_path)
         except OSError as e:
             logging.error(e)
+            print(e)
             sys.exit(0)
         
     logfile_path = "{}/{}.log".format(log_path,"log1")
@@ -36,28 +39,34 @@ def dataCapture(noOfPackets = 2,filename = "f"):
         logging.basicConfig(filename=logfile_path,filemode = "a",format='%(asctime)s %(levelname)s: %(message)s %(lineno)d',level=logging.ERROR)
     except PermissionError as e:
         logging.error(e)
+        print(e)
         sys.exit(0)
 
     logger = logging.getLogger()
 
 
     capture_path = os.getenv('CAPTURED_PACKET_PATH')
+    
     if not os.path.exists(capture_path):  
         try: 
             os.mkdir(capture_path)
         except OSError as e:
             logger.error(e)
+            print(e)
             sys.exit(0)
 
     packet_path = "{}/{}.pcap".format(capture_path,filename)
+    print(packet_path)
 
     try:
         capture = scapy.sniff(filter="ip6", count = noOfPackets)
     except PermissionError as e:
         logger.error(e)
+        print(e)
         sys.exit(0)
     except Exception as e:
         logger.error(e)
+        print(e)
         sys.exit(0)
     else:
         logger.info("captured {} packets".format(noOfPackets))
@@ -67,6 +76,7 @@ def dataCapture(noOfPackets = 2,filename = "f"):
         scapy.wrpcap(packet_path,capture)
     except OSError as e:
         logger.error(e)
+        print(e)
         sys.exit(0)
     else:
         logger.info("Saved the captured packets as {}.pcap".format(filename))
@@ -87,7 +97,18 @@ def dataCapture(noOfPackets = 2,filename = "f"):
             f.write(metadata_json)
     except FileNotFoundError as e:
         logger.error(e)
+        print(e)
         sys.exit(0)
+        
+       
 
+
+if __name__ == '__main__':
+
+    i = 0
+    while True:
+        # Capture files
+        dataCapture(noOfPackets=5,filename="f{}".format(i))
+        i+=1
 
 
