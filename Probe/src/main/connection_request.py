@@ -8,8 +8,8 @@ import config
 import utils
 
 
-
-logger = utils.getLogger()
+filename = "connection_request_"+ datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
+logger = utils.getLogger(filename)
 
 hostname = os.uname().nodename
 

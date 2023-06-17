@@ -9,13 +9,16 @@ from .grpc_bin import survey6_pb2 as pb2
 from data.ClientDao import ClientDao
 from data import DataUtils
 import Utils
+import datetime
+
 
 
 
 class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         
     def __init__(self):
-        self.LOGGER = Utils.getLogger()     
+        filename = "Server_"+ datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
+        self.LOGGER = Utils.getLogger(filename)     
         
         
     def ClientConnect(self, request, context):

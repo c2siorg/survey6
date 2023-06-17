@@ -22,7 +22,7 @@ if "BACKUP_PATH" in os.environ:
     BACKUP_PATH = os.getenv('BACKUP_PATH')
 
 
-UID_FILE_PATH = "/tmp/survey6"
+UID_FILE_PATH = "/tmp/survey6/uid.id"
 if "BACKUP_PATH" in os.environ:
     UID_FILE_PATH = os.getenv('UID_FILE_PATH')
 

@@ -5,10 +5,11 @@ from datetime import datetime
 import os
 import logging
 import config
-imort utils
+import utils
 
 
-logger = utils.getLogger()
+filename = "disconnection_request_"+ datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
+logger = utils.getLogger(filename)
 
 hostname = os.uname().nodename
 
