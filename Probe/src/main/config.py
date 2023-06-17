@@ -21,4 +21,11 @@ BACKUP_PATH = "dhruvi@dhruvi-HP-Pavilion-Laptop-15-cs2xxx:/tmp/survey6/backup"
 if "BACKUP_PATH" in os.environ:
     BACKUP_PATH = os.getenv('BACKUP_PATH')
 
-    
+
+UID_FILE_PATH = "/tmp/survey6"
+if "BACKUP_PATH" in os.environ:
+    UID_FILE_PATH = os.getenv('UID_FILE_PATH')
+
+GRPC_SERVER = "[::]:32001"
+if "BACKUP_PATH" in os.environ:
+    GRPC_SERVER = os.getenv('GRPC_SERVER')
