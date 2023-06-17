@@ -7,7 +7,7 @@ This directory holds the implementation of gRPC services defined in proto defini
 ### ClientConnection
 * **ClientConnect**
 * **ClientDisconnect**
-* Heartbeat
+* **Heartbeat**
 * GrantReceiveData
 ### Utils
 * ViewHealthOfClient
