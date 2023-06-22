@@ -9,13 +9,16 @@ from .grpc_bin import survey6_pb2 as pb2
 from data.ClientDao import ClientDao
 from data import DataUtils
 import Utils
+import datetime
+
 
 
 
 class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         
     def __init__(self):
-        self.LOGGER = Utils.getLogger()     
+        filename = "Server_"+ datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
+        self.LOGGER = Utils.getLogger(filename)     
         
         
     def ClientConnect(self, request, context):
@@ -24,7 +27,7 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         time = request.request_epoch_time.seconds
         uid,_ = client_db.addClient({'hostname': request.host_name,'registrationEpochTime': time,'lastActiveTime': time,'currentStatus': 1})
 
-        self.LOGGER.info("CLient connected with host name : {}".format(request.host_name))
+        self.LOGGER.info("Client connected with host name : {}".format(request.host_name))
         
         return pb2.ClientConnectResponse(connection_status = 1,uid = uid)
 
@@ -40,9 +43,9 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         
         else:
             if (len(removed_client_details) == 0):
-                self.LOGGER.info("No CLient {} found".format(request.host_name))
+                self.LOGGER.info("No Client {} found".format(request.host_name))
                 return pb2.ClientDisconnectResponse(disconnection_status = 0)
-            else: self.LOGGER.info("CLient {} deleted from clients db".format(request.host_name))
+            else: self.LOGGER.info("Client {} deleted from clients db".format(request.host_name))
             
         try:
             client_archive = DataUtils.clientToArchive(removed_client_details)
@@ -64,8 +67,17 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         
         
     def Heartbeat(self, request, context):
-        pass
+        client_db = ClientDao()  
+        time = request.request_epoch_time.seconds
+
+        try: 
+            rowsAffected = client_db.updateClientLastActiveTime(request.uid,request.request_epoch_time.seconds)
+        except sqlite3.OperationalError as e: 
+            self.LOGGER.error(e)
+            return pb2.HeartbeatAck(ack = 0)
+
+        return pb2.HeartbeatAck(ack = 1)
 
     def GrantReceiveData(self, request, context):
         pass
-        
+         

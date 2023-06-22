@@ -5,6 +5,7 @@ import time
 from service_methods.ClientConnectionService import ClientConnectionService
 from service_methods.grpc_bin import survey6_pb2_grpc as pb2_grpc
 import Utils
+import os
 
 
 
@@ -15,7 +16,8 @@ def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pb2_grpc.add_ClientConnectionServicer_to_server(ClientConnectionService(), server)
     
-    server.add_insecure_port('[::]:32001')
+    server_ip = os.getenv('GRPC_SERVER')
+    server.add_insecure_port(server_ip)
     server.start()
     server.wait_for_termination()
 
