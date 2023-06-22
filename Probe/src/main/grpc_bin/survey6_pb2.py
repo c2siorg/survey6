@@ -16,7 +16,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rsurvey6.proto\x12\x07survey6\x1a\x1fgoogle/protobuf/timestamp.proto\"a\n\x14\x43lientConnectRequest\x12\x11\n\thost_name\x18\x01 \x01(\t\x12\x36\n\x12request_epoch_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"R\n\x15\x43lientConnectResponse\x12,\n\x11\x63onnection_status\x18\x01 \x01(\x0e\x32\x11.survey6.Response\x12\x0b\n\x03uid\x18\x02 \x01(\t\"q\n\x17\x43lientDisconnectRequest\x12\x11\n\thost_name\x18\x01 \x01(\t\x12\x36\n\x12request_epoch_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0b\n\x03uid\x18\x03 \x01(\t\"K\n\x18\x43lientDisconnectResponse\x12/\n\x14\x64isconnection_status\x18\x01 \x01(\x0e\x32\x11.survey6.Response\"\\\n\x0fHeartbeatSender\x12\x11\n\thost_name\x18\x01 \x01(\t\x12\x36\n\x12request_epoch_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\".\n\x0cHeartbeatAck\x12\x1e\n\x03\x61\x63k\x18\x01 \x01(\x0e\x32\x11.survey6.Response\"\x19\n\x17GrantReceiveDataRequest\"\x1a\n\x18GrantReceiveDataResponse\"&\n\x11ViewHealthRequest\x12\x11\n\thost_name\x18\x01 \x01(\t\"\x14\n\x12ViewHealthResponse\"\x19\n\x17ViewDataRecievedRequest\"\x1a\n\x18ViewDataRecievedResponse*$\n\x08Response\x12\x0b\n\x07\x46\x41ILURE\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x32\xd2\x02\n\x10\x43lientConnection\x12N\n\rClientConnect\x12\x1d.survey6.ClientConnectRequest\x1a\x1e.survey6.ClientConnectResponse\x12W\n\x10\x43lientDisconnect\x12 .survey6.ClientDisconnectRequest\x1a!.survey6.ClientDisconnectResponse\x12<\n\tHeartbeat\x12\x18.survey6.HeartbeatSender\x1a\x15.survey6.HeartbeatAck\x12W\n\x10GrantReceiveData\x12 .survey6.GrantReceiveDataRequest\x1a!.survey6.GrantReceiveDataResponse2\xaf\x01\n\x05Utils\x12M\n\x12ViewHealthOfClient\x12\x1a.survey6.ViewHealthRequest\x1a\x1b.survey6.ViewHealthResponse\x12W\n\x10ViewDataRecieved\x12 .survey6.ViewDataRecievedRequest\x1a!.survey6.ViewDataRecievedResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rsurvey6.proto\x12\x07survey6\x1a\x1fgoogle/protobuf/timestamp.proto\"a\n\x14\x43lientConnectRequest\x12\x11\n\thost_name\x18\x01 \x01(\t\x12\x36\n\x12request_epoch_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"R\n\x15\x43lientConnectResponse\x12,\n\x11\x63onnection_status\x18\x01 \x01(\x0e\x32\x11.survey6.Response\x12\x0b\n\x03uid\x18\x02 \x01(\t\"q\n\x17\x43lientDisconnectRequest\x12\x11\n\thost_name\x18\x01 \x01(\t\x12\x36\n\x12request_epoch_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0b\n\x03uid\x18\x03 \x01(\t\"K\n\x18\x43lientDisconnectResponse\x12/\n\x14\x64isconnection_status\x18\x01 \x01(\x0e\x32\x11.survey6.Response\"i\n\x0fHeartbeatSender\x12\x11\n\thost_name\x18\x01 \x01(\t\x12\x36\n\x12request_epoch_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0b\n\x03uid\x18\x03 \x01(\t\".\n\x0cHeartbeatAck\x12\x1e\n\x03\x61\x63k\x18\x01 \x01(\x0e\x32\x11.survey6.Response\"\x19\n\x17GrantReceiveDataRequest\"\x1a\n\x18GrantReceiveDataResponse\"&\n\x11ViewHealthRequest\x12\x11\n\thost_name\x18\x01 \x01(\t\"\x14\n\x12ViewHealthResponse\"\x19\n\x17ViewDataRecievedRequest\"\x1a\n\x18ViewDataRecievedResponse*$\n\x08Response\x12\x0b\n\x07\x46\x41ILURE\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x32\xd2\x02\n\x10\x43lientConnection\x12N\n\rClientConnect\x12\x1d.survey6.ClientConnectRequest\x1a\x1e.survey6.ClientConnectResponse\x12W\n\x10\x43lientDisconnect\x12 .survey6.ClientDisconnectRequest\x1a!.survey6.ClientDisconnectResponse\x12<\n\tHeartbeat\x12\x18.survey6.HeartbeatSender\x1a\x15.survey6.HeartbeatAck\x12W\n\x10GrantReceiveData\x12 .survey6.GrantReceiveDataRequest\x1a!.survey6.GrantReceiveDataResponse2\xaf\x01\n\x05Utils\x12M\n\x12ViewHealthOfClient\x12\x1a.survey6.ViewHealthRequest\x1a\x1b.survey6.ViewHealthResponse\x12W\n\x10ViewDataRecieved\x12 .survey6.ViewDataRecievedRequest\x1a!.survey6.ViewDataRecievedResponseb\x06proto3')
 
 _RESPONSE = DESCRIPTOR.enum_types_by_name['Response']
 Response = enum_type_wrapper.EnumTypeWrapper(_RESPONSE)
@@ -125,8 +125,8 @@ _UTILS = DESCRIPTOR.services_by_name['Utils']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _RESPONSE._serialized_start=748
-  _RESPONSE._serialized_end=784
+  _RESPONSE._serialized_start=761
+  _RESPONSE._serialized_end=797
   _CLIENTCONNECTREQUEST._serialized_start=59
   _CLIENTCONNECTREQUEST._serialized_end=156
   _CLIENTCONNECTRESPONSE._serialized_start=158
@@ -136,23 +136,23 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CLIENTDISCONNECTRESPONSE._serialized_start=357
   _CLIENTDISCONNECTRESPONSE._serialized_end=432
   _HEARTBEATSENDER._serialized_start=434
-  _HEARTBEATSENDER._serialized_end=526
-  _HEARTBEATACK._serialized_start=528
-  _HEARTBEATACK._serialized_end=574
-  _GRANTRECEIVEDATAREQUEST._serialized_start=576
-  _GRANTRECEIVEDATAREQUEST._serialized_end=601
-  _GRANTRECEIVEDATARESPONSE._serialized_start=603
-  _GRANTRECEIVEDATARESPONSE._serialized_end=629
-  _VIEWHEALTHREQUEST._serialized_start=631
-  _VIEWHEALTHREQUEST._serialized_end=669
-  _VIEWHEALTHRESPONSE._serialized_start=671
-  _VIEWHEALTHRESPONSE._serialized_end=691
-  _VIEWDATARECIEVEDREQUEST._serialized_start=693
-  _VIEWDATARECIEVEDREQUEST._serialized_end=718
-  _VIEWDATARECIEVEDRESPONSE._serialized_start=720
-  _VIEWDATARECIEVEDRESPONSE._serialized_end=746
-  _CLIENTCONNECTION._serialized_start=787
-  _CLIENTCONNECTION._serialized_end=1125
-  _UTILS._serialized_start=1128
-  _UTILS._serialized_end=1303
+  _HEARTBEATSENDER._serialized_end=539
+  _HEARTBEATACK._serialized_start=541
+  _HEARTBEATACK._serialized_end=587
+  _GRANTRECEIVEDATAREQUEST._serialized_start=589
+  _GRANTRECEIVEDATAREQUEST._serialized_end=614
+  _GRANTRECEIVEDATARESPONSE._serialized_start=616
+  _GRANTRECEIVEDATARESPONSE._serialized_end=642
+  _VIEWHEALTHREQUEST._serialized_start=644
+  _VIEWHEALTHREQUEST._serialized_end=682
+  _VIEWHEALTHRESPONSE._serialized_start=684
+  _VIEWHEALTHRESPONSE._serialized_end=704
+  _VIEWDATARECIEVEDREQUEST._serialized_start=706
+  _VIEWDATARECIEVEDREQUEST._serialized_end=731
+  _VIEWDATARECIEVEDRESPONSE._serialized_start=733
+  _VIEWDATARECIEVEDRESPONSE._serialized_end=759
+  _CLIENTCONNECTION._serialized_start=800
+  _CLIENTCONNECTION._serialized_end=1138
+  _UTILS._serialized_start=1141
+  _UTILS._serialized_end=1316
 # @@protoc_insertion_point(module_scope)

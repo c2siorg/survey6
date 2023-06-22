@@ -29,6 +29,11 @@ class ClientDao(object):
    def addArchive(self, archive):
       self.db.query("INSERT INTO ClientArchives (id,hostname, lastActiveTime) VALUES(:uid,:hostname,:lastActiveTime)",archive)
       
+   def updateClientLastActiveTime(self,uid,lastActiveTime):
+      # UPDATE COMPANY SET ADDRESS = 'Texas' WHERE ID = 6;
+      result = self.db.query("UPDATE CurrentClients SET lastActiveTime = (:lastActiveTime) WHERE id = :uid;",{'lastActiveTime': lastActiveTime,'uid' : uid})
+      return result.rowcount
+
 
   
     
