@@ -4,41 +4,17 @@ from grpc_bin import survey6_pb2 as pb2
 from datetime import datetime
 import os
 import logging
-from dotenv import load_dotenv
+import config
+import utils
 
 
-
-load_dotenv()
-
-
-log_path = os.path.expanduser(os.getenv('LOG_PATH'))
-
-if not os.path.exists(log_path):  
-    try: 
-        os.makedirs(log_path)
-    except OSError as e:
-        logging.error(e)
-        print(e)
-        sys.exit(0)
-    
-logfile_path = "{}/{}.log".format(log_path,"log1")
-
-try:
-    logging.basicConfig(filename=logfile_path,filemode = "a",format='%(asctime)s %(levelname)s: %(message)s',level=logging.INFO)
-    logging.basicConfig(filename=logfile_path,filemode = "a",format='%(asctime)s %(levelname)s: %(message)s %(lineno)d',level=logging.ERROR)
-except PermissionError as e:
-    logging.error(e)
-    print(e)
-    sys.exit(0)
-
-logger = logging.getLogger()
+filename = "connection_request_"+ datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
+logger = utils.getLogger(filename)
 
 hostname = os.uname().nodename
-UID = os.getenv('UID')
 
 # Connecting to the GRPC server
-server_ip = os.getenv('GRPC_SERVER')
-with grpc.insecure_channel(server_ip) as channel: 
+with grpc.insecure_channel(config.GRPC_SERVER) as channel: 
 
     stub = pb2_grpc.ClientConnectionStub(channel)
 
@@ -54,7 +30,7 @@ with grpc.insecure_channel(server_ip) as channel:
     logger.info("Connection uid: {}".format(res.uid))
     
     # Saving the user id
-    with open(os.path.expanduser(UID), 'w') as f:
+    with open(config.UID_FILE_PATH, 'w') as f:
         f.write(res.uid)
 
-    logger.info("UID is stored in: {}".format(UID))
+    logger.info("UID is stored in: {}".format(config.UID_FILE_PATH))
