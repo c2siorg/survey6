@@ -1,0 +1,8 @@
+username=survey6
+password=survey6
+
+adduser --gecos "" --disabled-password $username
+echo "$username:$password" | chpasswd 
+sudo chmod -R 777 /home/survey6
+
+mkdir -p /home/survey6/probe
