@@ -16,7 +16,7 @@ if "LOG_PATH" in os.environ:
     LOG_PATH = os.getenv('LOG_PATH')
 
 
-BACKUP_PATH = "dhruvi@dhruvi-HP-Pavilion-Laptop-15-cs2xxx:/tmp/survey6/backup"
+BACKUP_PATH = "dhruvi@dhruvi-HP-Pavilion-Laptop-15-cs2xxx:"
 
 if "BACKUP_PATH" in os.environ:
     BACKUP_PATH = os.getenv('BACKUP_PATH')

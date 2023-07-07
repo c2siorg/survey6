@@ -28,7 +28,8 @@ if not os.path.exists(backup_path):
     try: 
         os.makedirs(backup_path)
     except OSError as e:
-        logging.error(e)
+        logger.error(e)
+        logger.error("Exiting ....")
         sys.exit(0)
 
 
@@ -37,13 +38,13 @@ if __name__ == '__main__':
     f = open(rsynclogfilepath, "w")
     while True:
         # Transfer files to the server using RSync
-        cmd = "rsync -partial -z -e 'ssh -p 22' {} {}".format(capture_path,backup_path)
+        cmd = "sudo rsync -partial -z -e 'ssh -p 22' {} {}".format(capture_path,backup_path)
         try: 
-	        return_code = subprocess.call(cmd,shell=True,stdout=f)
-	        if return_code == 0:
-	            logger.info("Rsync Command executed successfully.")
-	        else:
-	            logger.error("Rsync Command failed with return code {}".format(return_code))
+            return_code = subprocess.call(cmd,shell=True,stdout=f)
+            if return_code == 0:
+                logger.info("Rsync Command executed successfully.")
+            else:
+                logger.error("Rsync Command failed with return code {}".format(return_code))
         except Exception as e:
             logger.error(e)
 

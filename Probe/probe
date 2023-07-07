@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ -z "$1" ];
+then
+    echo "Enter a command: start / stop / status"
+elif [ "$1" = "start" ]; 
+then
+    /home/dhruvi/survey6/Probe/env/bin/python3 /home/dhruvi/survey6/Probe/src/main/connection_request.py 
+    sudo /home/dhruvi/survey6/Probe/env/bin/python3 /home/dhruvi/survey6/Probe/src/main/data_collector.py &
+    sudo /home/dhruvi/survey6/Probe/env/bin/python3 /home/dhruvi/survey6/Probe/src/main/data_transfer.py &
+    sudo /home/dhruvi/survey6/Probe/env/bin/python3 /home/dhruvi/survey6/Probe/src/main/heartbeat.py &
+    echo "Stated Probe Successfully"
+    echo "You can check the logs at /tmp/survey6/logs"
+elif [ "$1" = "stop" ]; 
+then
+    sudo kill $(ps aux | grep 'data_transfer.py' | awk '{print $2}')
+    sudo kill $(ps aux | grep 'data_collector.py' | awk '{print $2}')
+    sudo kill $(ps aux | grep 'heartbeat.py' | awk '{print $2}')
+    /home/dhruvi/survey6/Probe/env/bin/python3 /home/dhruvi/survey6/Probe/src/main/disconnection_request.py
+    echo "Stopped Probe Successfully"
+else
+    echo "Command not supported"
+fi 
