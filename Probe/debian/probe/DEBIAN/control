@@ -3,6 +3,7 @@ Version: 0.1.0-1
 Architecture: all
 Maintainer: C2SI <scorelab.com>
 Installed-Size: 64
+Depends: python3, python3-pip
 Section: python
 Priority: optional
 Description: Server of Survey6 tool
