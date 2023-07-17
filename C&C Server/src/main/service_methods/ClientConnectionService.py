@@ -24,6 +24,7 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
     def ClientConnect(self, request, context):
         
         client_db = ClientDao()  
+        print("clent connection")
         time = request.request_epoch_time.seconds
         uid,_ = client_db.addClient({'hostname': request.host_name,'registrationEpochTime': time,'lastActiveTime': time,'currentStatus': 1})
 

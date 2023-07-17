@@ -1,0 +1,6 @@
+username=survey6
+password=survey6
+
+useradd -r $username -s /bin/bash -m
+echo "$username:$password" | chpasswd 
+mkdir /home/survey6/probe

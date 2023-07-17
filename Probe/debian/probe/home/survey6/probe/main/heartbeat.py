@@ -16,11 +16,8 @@ hostname = os.uname().nodename
 
 # Read the probe uid that was stored in the system
 uid = ""
-try: 
-    with open(config.UID_FILE_PATH, 'r') as f:
-        uid = f.read()
-except:
-    uid = ""
+with open(config.UID_FILE_PATH, 'r') as f:
+    uid = f.read()
 
 # Connecting to the GRPC server
 with grpc.insecure_channel(config.GRPC_SERVER) as channel: 
