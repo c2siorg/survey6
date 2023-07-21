@@ -30,7 +30,7 @@ if __name__ == '__main__':
     f = open(rsynclogfilepath, "w")
     while True:
         # Transfer files to the server using RSync
-        cmd = "sudo rsync -partial -z -e 'ssh -p 22' {} {}".format(capture_path,backup_path)
+        cmd = "sudo rsync -partial -z -e 'ssh -p 22' {} {} --remove-source-files".format(capture_path,backup_path)
         try: 
             return_code = subprocess.call(cmd,shell=True,stdout=f)
             if return_code == 0:
