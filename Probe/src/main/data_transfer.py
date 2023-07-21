@@ -10,9 +10,10 @@ import config
 
 
 
+myHostName = os.uname().nodename
 
 capture_path = config.CAPTURE_PATH
-backup_path = config.BACKUP_PATH
+backup_path = "{}/{}".format(config.BACKUP_PATH,myHostName) # eventually replace hostname with hostId 
 log_path = config.LOG_PATH
 
 logfilename = "survey6_backup"+ datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
@@ -23,15 +24,6 @@ rsynclogfilepath = "{}/{}.log".format(log_path,"survey6_rsync"+ datetime.now().s
 if not os.path.exists(capture_path):
     logger.error("Capture path doesnot exist")
     sys.exit(0)
-
-if not os.path.exists(backup_path):  
-    try: 
-        os.makedirs(backup_path)
-    except OSError as e:
-        logger.error(e)
-        logger.error("Exiting ....")
-        sys.exit(0)
-
 
 if __name__ == '__main__':
 
