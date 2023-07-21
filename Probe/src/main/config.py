@@ -23,9 +23,9 @@ if "BACKUP_PATH" in os.environ:
 
 
 UID_FILE_PATH = "/tmp/survey6/uid.id"
-if "BACKUP_PATH" in os.environ:
+if "UID_FILE_PATH" in os.environ:
     UID_FILE_PATH = os.getenv('UID_FILE_PATH')
 
 GRPC_SERVER = "[::]:32001"
-if "BACKUP_PATH" in os.environ:
+if "GRPC_SERVER" in os.environ:
     GRPC_SERVER = os.getenv('GRPC_SERVER')
