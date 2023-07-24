@@ -53,7 +53,7 @@ class DataCollector():
             'release':posix.release,
             'version':posix.version,
             'machine':posix.machine,
-            # 'Number of packets captured per .pcap': self.noOfPackets,
+            'Number of packets captured per .pcap': self.noOfPackets,
             'CPU Count':os.cpu_count(),
             'total memory': mem_total_kB,
             'all interfaces': scapy.get_if_list(),
