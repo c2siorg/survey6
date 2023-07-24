@@ -8,6 +8,8 @@ class ClientDao(object):
       self.db = DbHelper('clients.db')
       self.db.query("CREATE TABLE IF NOT EXISTS CurrentClients (id BINARY(16) PRIMARY KEY, hostname TEXT, registrationEpochTime TIMESTAMP, lastActiveTime TIMESTAMP, currentStatus BOOLEAN, lastDataReceivedTime TIMESTAMP)",{})
       self.db.query("CREATE TABLE IF NOT EXISTS ClientArchives (id BINARY(16) PRIMARY KEY, hostname TEXT , lastActiveTime TIMESTAMP)",{})
+      self.db.query("CREATE TABLE IF NOT EXISTS EventLog (id BINARY(16), hostname TEXT , heartbeatTime TIMESTAMP)",{})
+
 
     
    def addClient(self,client):
@@ -30,10 +32,11 @@ class ClientDao(object):
       self.db.query("INSERT INTO ClientArchives (id,hostname, lastActiveTime) VALUES(:uid,:hostname,:lastActiveTime)",archive)
       
    def updateClientLastActiveTime(self,uid,lastActiveTime):
-      # UPDATE COMPANY SET ADDRESS = 'Texas' WHERE ID = 6;
       result = self.db.query("UPDATE CurrentClients SET lastActiveTime = (:lastActiveTime) WHERE id = :uid;",{'lastActiveTime': lastActiveTime,'uid' : uid})
       return result.rowcount
 
-
+   def addHeartbeatEvent(self,uid,hostname,heartbeatTime):
+      self.db.query("INSERT INTO EventLog (id,hostname, heartbeatTime) VALUES(:uid, :hostname, :heartbeatTime)",{'heartbeatTime': heartbeatTime,'uid' : uid, 'hostname':hostname})
+      
   
     
