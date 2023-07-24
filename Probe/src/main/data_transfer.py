@@ -10,10 +10,12 @@ import config
 
 
 
-myHostName = os.uname().nodename
+myUID = ""
+with open(config.UID_FILE_PATH, 'r') as f:
+    uid = f.read()
 
 capture_path = config.CAPTURE_PATH
-backup_path = "{}/{}".format(config.BACKUP_PATH,myHostName) # eventually replace hostname with hostId 
+backup_path = "{}/{}".format(config.BACKUP_PATH,myUID) 
 log_path = config.LOG_PATH
 
 logfilename = "survey6_backup"+ datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
