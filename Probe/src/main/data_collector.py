@@ -81,7 +81,7 @@ if __name__ == '__main__':
     i = 0
     while True:
         # Capture files
-        dataCapture(noOfPackets=5,filename="f{}".format(i))
+        dataCapture(noOfPackets=5,filename="f{}".format(datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S")))
         i+=1
 
 

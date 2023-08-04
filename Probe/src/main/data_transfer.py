@@ -10,9 +10,12 @@ import config
 
 
 
+myUID = ""
+with open(config.UID_FILE_PATH, 'r') as f:
+    uid = f.read()
 
 capture_path = config.CAPTURE_PATH
-backup_path = config.BACKUP_PATH
+backup_path = "{}/{}".format(config.BACKUP_PATH,myUID) 
 log_path = config.LOG_PATH
 
 logfilename = "survey6_backup"+ datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
@@ -24,21 +27,12 @@ if not os.path.exists(capture_path):
     logger.error("Capture path doesnot exist")
     sys.exit(0)
 
-if not os.path.exists(backup_path):  
-    try: 
-        os.makedirs(backup_path)
-    except OSError as e:
-        logger.error(e)
-        logger.error("Exiting ....")
-        sys.exit(0)
-
-
 if __name__ == '__main__':
 
     f = open(rsynclogfilepath, "w")
     while True:
         # Transfer files to the server using RSync
-        cmd = "sudo rsync -partial -z -e 'ssh -p 22' {} {}".format(capture_path,backup_path)
+        cmd = "sudo rsync -partial -z -e 'ssh -p 22' {} {} --remove-source-files".format(capture_path,backup_path)
         try: 
             return_code = subprocess.call(cmd,shell=True,stdout=f)
             if return_code == 0:
