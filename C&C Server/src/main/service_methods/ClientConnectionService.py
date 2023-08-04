@@ -72,6 +72,12 @@ class ClientConnectionService(pb2_grpc.ClientConnectionServicer):
         time = request.request_epoch_time.seconds
 
         try: 
+            client_db.addHeartbeatEvent(request.uid,request.host_name,request.request_epoch_time.seconds)
+        except sqlite3.OperationalError as e: 
+            self.LOGGER.error(e)
+            return pb2.HeartbeatAck(ack = 0)
+
+        try: 
             rowsAffected = client_db.updateClientLastActiveTime(request.uid,request.request_epoch_time.seconds)
         except sqlite3.OperationalError as e: 
             self.LOGGER.error(e)
