@@ -47,19 +47,19 @@ class DataCollector():
 
             
         metadata = {
-            'UID': self.uid,
+            'uid': self.uid,
             'sysname':posix.sysname,
             'nodename':posix.nodename,
             'release':posix.release,
             'version':posix.version,
             'machine':posix.machine,
-            'Number of packets captured per .pcap': self.noOfPackets,
-            'CPU Count':os.cpu_count(),
-            'total memory': mem_total_kB,
-            'all interfaces': scapy.get_if_list(),
-            'sniff interface': str(scapy.conf.iface),
-            'ip4 address': scapy.get_if_addr(scapy.conf.iface),
-            'mac address': scapy.get_if_hwaddr(scapy.conf.iface),
+            'number_of_packets_captured_per_pcap': self.noOfPackets,
+            'cpu_count':os.cpu_count(),
+            'total_memory': mem_total_kB,
+            'all_interfaces': scapy.get_if_list(),
+            'sniff_interface': str(scapy.conf.iface),
+            'ip4_address': scapy.get_if_addr(scapy.conf.iface),
+            'mac_address': scapy.get_if_hwaddr(scapy.conf.iface),
         }
 
         metadata_json = json.dumps(metadata, indent=4)
