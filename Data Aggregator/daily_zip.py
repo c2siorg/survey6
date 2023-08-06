@@ -29,10 +29,9 @@ def create_daily_zip():
         with zipfile.ZipFile(os.path.join(daily_zip_directory, zip_filename), "w") as zipf:
             for root, _, files in os.walk(hourly_zip_directory):
                 for file in files:
-                    if file.endswith(".zip") and file.startswith(yesterday.strftime('%Y-%m-%d')):
-                        file_path = os.path.join(root, file)
-                        zipf.write(file_path, os.path.relpath(file_path, hourly_zip_directory))
-                        os.remove(file_path)
+                    file_path = os.path.join(root, file)
+                    zipf.write(file_path, os.path.relpath(file_path, hourly_zip_directory))
+                    os.remove(file_path)
 
 
 if __name__ == "__main__":
