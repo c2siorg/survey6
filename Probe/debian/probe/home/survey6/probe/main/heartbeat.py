@@ -7,6 +7,7 @@ import logging
 import config
 import utils
 import time
+import sys
 
 
 filename = "health_"+ datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
@@ -16,8 +17,12 @@ hostname = os.uname().nodename
 
 # Read the probe uid that was stored in the system
 uid = ""
-with open(config.UID_FILE_PATH, 'r') as f:
-    uid = f.read()
+try: 
+    with open(config.UID_FILE_PATH, 'r') as f:
+        uid = f.read()
+except:
+    logger.error("No UID found, abborting heartbeat sending")
+    sys.exit(0)
 
 # Connecting to the GRPC server
 with grpc.insecure_channel(config.GRPC_SERVER) as channel: 

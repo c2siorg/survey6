@@ -2,7 +2,7 @@ Package: probe
 Version: 0.1.0-1
 Architecture: all
 Maintainer: C2SI <scorelab.com>
-Installed-Size: 64
+Installed-Size: 50
 Depends: python3, python3-pip
 Section: python
 Priority: optional

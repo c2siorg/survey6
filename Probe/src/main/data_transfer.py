@@ -43,5 +43,5 @@ if __name__ == '__main__':
             logger.error(e)
 
 	    # Wait for some time before transferring files again
-        time.sleep(60)
+        time.sleep(60) # 60 seconds
         
