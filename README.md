@@ -14,7 +14,7 @@ Ipv6 is the internet's future, and it necessitated a more scalable survey tool t
 2. [C&C Server](#cc-server)
 3. [Data Aggregator](#data-aggregator)
 
-![chart2](https://user-images.githubusercontent.com/61967013/189522889-f7c20d8f-4796-4aaf-9777-f90852f91d26.png)
+![chart2](https://github-production-user-asset-6210df.s3.amazonaws.com/61967013/263470237-21e180e0-0bb3-4248-a7a4-9af0ad1895cb.png)
 You can find setup and installation guide for each of the modules in their respective module directories and they are linked below too. 
 ***
 ## Probe
@@ -32,6 +32,7 @@ Python, GRPC, Scapy
 
 ### Demo
 * [Probe Video](https://drive.google.com/file/d/1fSBYXjHva7zfjUsIW2_bN7vebJO_SB8Q/view?usp=sharing)
+* [Probe CLI Video]
 ***
 ## C\&C server
 
@@ -50,24 +51,17 @@ Python, gRPC, Redis queue, SQLite, Flask
 ***
 ## Data Aggregator.
 
-Data Aggregator is a series of scheduled Apache Airflow Dags
-
-* DAG1 - Use dpkt or scapy to parse the pcap files along with metadata.
-* DAG2 - Spark Jobs to clean and aggregate the data and write to Parquet.
-* DAG3 - Error handling and cleansing temp data.
-
-### Stack
-Python, AirFlow, Spark, PySpark, scapy
+Data Collection server. Collects, cleans and stores IPv6 packets for future study.
+* Receive IPv6 packets from clients
+* Hourly and daily zipping of data files
 
 * * *
 
 # Contributing
 We are glad that you are willing to contribute. Tasks to be taken up next are:
 1. Fix issue that fails one testcase - *C&C Server*
-2. Heartbeat and health status check - *both modules : Probe and C&C Server*
-3. Sending packets from probe and receiving packets at server - *both modules : Probe and C&C Server*
-4. Create a debian package for the probe once it has significant development. [For this one could refer packaging procedure of C&C Server: [here](https://medium.com/scorelab/packaging-overview-74aaeead3655) and [here](https://medium.com/scorelab/debian-packaging-of-a-python-project-ca4dfac9ac98)] - *Probe*
-5. Display status of connected and registered probes - *C&C server*
+2. Display status of connected and registered probes - *C&C server*
+3. Sending password pf the data aggregator from server to the probe on regisration 
 
 Stretch goal:
 1. Hosting the debian packages

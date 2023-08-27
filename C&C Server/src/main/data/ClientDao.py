@@ -37,6 +37,3 @@ class ClientDao(object):
 
    def addHeartbeatEvent(self,uid,hostname,heartbeatTime):
       self.db.query("INSERT INTO EventLog (id,hostname, heartbeatTime) VALUES(:uid, :hostname, :heartbeatTime)",{'heartbeatTime': heartbeatTime,'uid' : uid, 'hostname':hostname})
-      
-  
-    

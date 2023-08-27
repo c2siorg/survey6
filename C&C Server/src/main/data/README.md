@@ -35,6 +35,15 @@ All database operations reside in this directory
 </tr>
 </table>
 
+#### EventLog
+<table>
+<tr>
+<td>id</td>
+<td>hostname</td>
+<td>heartbeatTime</td>
+</tr>
+</table>
+
 
 ## Important classes & methods 
 
@@ -52,4 +61,12 @@ All database operations reside in this directory
 
 4. **addArchive()**
 > <u>Arguments</u>: converted archive dictionary
+> <u>Output</u>: 
+
+5. **updateClientLastActiveTime()**
+> <u>Arguments</u>: converted archive dictionary
+> <u>Output</u>: row_count
+
+6. **addHeartbeatEvent()**
+> <u>Arguments</u>: uid, lastActiveTime
 > <u>Output</u>: 
