@@ -1,6 +1,6 @@
 python-dotenv==0.20.0
 scapy==2.4.5
-grpcio==1.47.0
-grpcio-tools==1.47.0
+grpcio==1.48.1
+grpcio-testing==1.48.1
 protobuf==3.20.1
 six==1.16.0

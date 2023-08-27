@@ -11,7 +11,7 @@ import os
 
 def serve():
     
-    LOGGER = Utils.getLogger('log4')
+    LOGGER = Utils.getLogger('log5')
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pb2_grpc.add_ClientConnectionServicer_to_server(ClientConnectionService(), server)

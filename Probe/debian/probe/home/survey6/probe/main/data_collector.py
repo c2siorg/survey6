@@ -1,3 +1,4 @@
+import re
 import scapy.all as scapy
 import os
 import sys
@@ -7,81 +8,120 @@ import utils
 import config
 
 
+class DataCollector():
 
 
-def dataCapture(noOfPackets = 2,filename = "f"):
-    ''' 
-    - Captures {noOfPackets} IPv6 data packets from all interfaces of the probe
-    - Stores the captured packets in a single .pcap file of name {filename}
-    - Annotates the .pcap file with hostname & date of capture
-    - Input: 
-        * noOfPackets : number of packets to be captured
-        * filename : the name by which the .pcap file is stored
-    - Output:
-        * none 
-    '''
+    def __init__(self,noOfPackets = 5) -> None:
 
-    logfilename = "capture_"+ datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
-    logger = utils.getLogger(logfilename)
+        self.logfilename = "capture_"+ datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
+        self.logger = utils.getLogger(self.logfilename)
 
-    capture_path = config.CAPTURE_PATH
+        self.capture_path = config.CAPTURE_PATH
 
-    if not os.path.exists(capture_path):  
-        try: 
-            os.makedirs(capture_path)
-        except OSError as e:
-            logger.error(e)
-            sys.exit(0)
-    
-    packet_path = "{}/{}.pcap".format(capture_path,filename)
-
-    try:
-        capture = scapy.sniff(filter="ip6", count = noOfPackets)
-    except PermissionError as e:
-        logger.error(e)
-        sys.exit(0)
-    except Exception as e:
-        logger.error(e)
-        sys.exit(0)
-    else:
-        logger.info("captured {} packets".format(noOfPackets))
-
-    
-    try:
-        scapy.wrpcap(packet_path,capture)
-    except OSError as e:
-        logger.error(e)
-        sys.exit(0)
-    else:
-        logger.info("Saved the captured packets as {}.pcap".format(filename))
-    
-
-    myhost = os.uname().nodename
-    logger.info("captured by: {}".format(myhost))
-
-    now = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")    #change
-    logger.info("captured on {}".format(now))
-
-    metadata = {'hostname': myhost,'date':now, 'filename':"{}.pcap".format(filename)}
-    metadata_json = json.dumps(metadata, indent=4)
-    
-    metadata_path = "{}/{}.json".format(capture_path,filename)
-    try:
-        with open(metadata_path,"w") as f:
-            f.write(metadata_json)
-    except FileNotFoundError as e:
-        logger.error(e)
-        sys.exit(0)
+        if not os.path.exists(self.capture_path):  
+            try: 
+                os.makedirs(self.capture_path)
+            except OSError as e:
+                self.logger.error(e)
+                sys.exit(0)
         
+        self.noOfPackets = noOfPackets
+        self.myhost = os.uname().nodename
+
+        try: 
+            with open(config.UID_FILE_PATH, 'r') as f:
+                self.uid = f.read()
+        except:
+            self.logger.error("No UID found, abborting data collection")
+            sys.exit(0)
+
+    def writeMetaData(self):
+        
+
+        posix = os.uname()
+        with open('/proc/meminfo') as f:
+            meminfo = f.read()
+        matched = re.search(r'^MemTotal:\s+(\d+)', meminfo)
+        if matched: 
+            mem_total_kB = int(matched.groups()[0])
+
+            
+        metadata = {
+            'uid': self.uid,
+            'sysname':posix.sysname,
+            'nodename':posix.nodename,
+            'release':posix.release,
+            'version':posix.version,
+            'machine':posix.machine,
+            'number_of_packets_captured_per_pcap': self.noOfPackets,
+            'cpu_count':os.cpu_count(),
+            'total_memory': mem_total_kB,
+            'all_interfaces': scapy.get_if_list(),
+            'sniff_interface': str(scapy.conf.iface),
+            'ip4_address': scapy.get_if_addr(scapy.conf.iface),
+            'mac_address': scapy.get_if_hwaddr(scapy.conf.iface),
+        }
+
+        metadata_json = json.dumps(metadata, indent=4)
+
+        
+        metadata_path = "{}/{}.json".format(self.capture_path,self.uid)
+        try:
+            with open(metadata_path,"w") as f:
+                f.write(metadata_json)
+        except FileNotFoundError as e:
+            self.logger.error(e)
+            sys.exit(0)
+
+    def dataCapture(self,filename):
+        ''' 
+        - Captures {noOfPackets} IPv6 data packets from all interfaces of the probe
+        - Stores the captured packets in a single .pcap file of name {filename}
+        - Annotates the .pcap file with hostname & date of capture
+        - Input: 
+            * noOfPackets : number of packets to be captured
+            * filename : the name by which the .pcap file is stored
+        - Output:
+            * none 
+        '''
+
+
+        packet_path = "{}/{}.pcap".format(self.capture_path,filename)
+
+        try:
+            capture = scapy.sniff(filter="ip6", count = self.noOfPackets)
+        except PermissionError as e:
+            self.logger.error(e)
+            sys.exit(0)
+        except Exception as e:
+            self.logger.error(e)
+            sys.exit(0)
+        else:
+            self.logger.info("captured {} packets".format(self.noOfPackets))
+
+        
+        try:
+            scapy.wrpcap(packet_path,capture)
+        except OSError as e:
+            self.logger.error(e)
+            sys.exit(0)
+        else:
+            self.logger.info("Saved the captured packets as {}.pcap".format(filename))
+        
+        now = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S") 
+
+        self.logger.info("captured by: {}".format(self.myhost))
+        self.logger.info("captured on {}".format(now))
+
+
+            
        
 
 
 if __name__ == '__main__':
 
-    i = 0
+
+    dataCollector = DataCollector(noOfPackets=5)
+    dataCollector.writeMetaData()
     while True:
-        # Capture files
-        dataCapture(noOfPackets=5,filename="f{}".format(i))
-        i+=1
-
-
+        dataCollector.dataCapture(filename="f{}".format(datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S")))
