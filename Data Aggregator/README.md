@@ -35,6 +35,11 @@ cd ../Data\ Aggregator/
 2. Select your editor
 3. Add following two lines
 ```
+0 * * * * sudo /usr/bin/python3 [Path to survey6]/Data\ Aggregator/hourly_zip.py
+0 0 * * * sudo /usr/bin/python3 [Path to survey6]/Data\ Aggregator/daily_zip.py
+```
+Such as,
+```
 0 * * * * sudo /usr/bin/python3 /home/dhruvi/survey6/Data\ Aggregator/hourly_zip.py
 0 0 * * * sudo /usr/bin/python3 /home/dhruvi/survey6/Data\ Aggregator/daily_zip.py
 ```
@@ -42,20 +47,29 @@ cd ../Data\ Aggregator/
 ```
 sudo crontab -l
 ```
+![Alt text](https://github.com/c2siorg/GSoC/assets/61967013/0a15753d-f5e4-4343-8e26-4a8b262d9172)
 5. To view sys logs
 ```
 grep CRON /var/log/syslog
 ```
-
-## Screenshots
-![](./screenshots/clientTest.png)
-
-## System service
-![](./screenshots/system_service.png)
-
-### Testing
-![](./screenshots/testcases.png)
-
-## Video Demo
-* [Running from package](https://drive.google.com/file/d/1kmxOZZXKXUTpBfkJcs1gcroiuIDU3tys/view?usp=sharing)
-* [Testing](https://drive.google.com/file/d/1mlhD5XWk1s7ELlx36w6s4_0fUfeKQu8D/view?usp=sharing)
+## Data Aggregator Server Directory
+```
+.
+├── clientEnd
+│   └── dhruvi-HP-Pavilion-Laptop-15-cs2xxx //client dumps the files here
+│       ├── f23-07-2023-16-32-19.json
+│       ├── f23-07-2023-16-32-19.pcap
+│       ├── f23-07-2023-16-32-34.pcap
+│       └── f23-07-2023-16-32-38.pcap
+└── processedFiles
+    └── dhruvi-HP-Pavilion-Laptop-15-cs2xxx 
+        ├── daily
+        │   ├── 2023-07-21.zip
+        │   └── 2023-07-22.zip
+        └── hourly
+            ├── 2023-07-23_15-33.zip
+            ├── 2023-07-23_14-29.zip
+            .
+            .
+            
+```

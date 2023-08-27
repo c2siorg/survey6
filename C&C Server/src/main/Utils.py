@@ -11,7 +11,7 @@ def getLogger(filename):
     if "LOG_PATH" in os.environ:
         log_path = os.getenv('LOG_PATH')
     else: 
-        log_path = "/tmp/survey6/logs"
+        log_path = "/home/survey6/logs"
 
     if not os.path.exists(log_path):  
         try: 

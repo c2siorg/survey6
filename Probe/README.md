@@ -166,6 +166,7 @@ FYI: directory structure of `/tmp/survey6`
 ├── logs (dir)
 └── uid.id (file)
 ```
+
 ### Where exactly is the data sent in the server?
 `DataAgreegatorIP:clientEnd`
 extra: [directory structure of data aggregator]()
