@@ -19,10 +19,10 @@ You can find setup and installation guide for each of the modules in their respe
 ***
 ## Probe
 
-Intercept and collect all the ipv6 traffics (regardless of the protocol) therefore libpcap is preferable. probe binaries must run as a service of the operating system (OS could be Linux host).  Moreover, the probe cast a heartbeat to the C&C server for its heath checks mechanisms. This must be implemented using grpc.  Probe identifies ideal states of the host network interface and uses those time windows to send the collected ipv6 pcap.  For this. This data must be annotated with meta-information for aggregation purposes (meta information could be discussed)   
+Intercept and collect all the ipv6 traffic (regardless of the protocol) therefore libpcap is preferable. probe binaries must run as a service of the operating system (OS could be Linux host).  Moreover, the probe cast a heartbeat to the C&C server for its heath checks mechanisms. This must be implemented using gRPC.  Probe identifies ideal states of the host network interface and uses those time windows to send the collected ipv6 pcap. For this, data must be annotated with meta-information for aggregation purposes (meta information could be discussed)   
 
 ### Probe CLI
-Probe CLI is a sub-component of Probe that allows starting (passing the registering string from C&C server, eg- How you add new nodes to Kubernetes ), suspending the probe's execution in the host machine. 
+Probe CLI is a sub-component of Probe that allows starting (passing the registering string from C&C server, eg- How you add new nodes to Kubernetes), suspending the probe's execution in the host machine. 
 
 ### Stack
 Python, GRPC, Scapy
@@ -39,7 +39,7 @@ Python, GRPC, Scapy
 C&C server should have the Probe registering mechanism. And it listens to registered Prob's heartbeats.  WebUI shows the active states of Probes in a list view. 
 
 ### Stack
-Python, GRPC, Redis queue, SQL Lite, Flask
+Python, gRPC, Redis queue, SQLite, Flask
 
 ### Module Info, Setup \& Installation Guide
 * [C&C Server](./C%26C%20Server/README.md)
@@ -54,6 +54,7 @@ Python, GRPC, Redis queue, SQL Lite, Flask
 Data Collection server. Collects, cleans and stores IPv6 packets for future study.
 * Receive IPv6 packets from clients
 * Hourly and daily zipping of data files
+
 * * *
 
 # Contributing
